@@ -1,6 +1,7 @@
 <template>
   <div id="app">
    <Avatar url="https://img0.baidu.com/it/u=218761232,3524899133&fm=253&fmt=auto&app=120&f=JPEG?w=800&h=970" :size="100"/>
+   <Avatar url="https://img0.baidu.com/it/u=218761232,3524899133&fm=253&fmt=auto&app=120&f=JPEG?w=800&h=970" />
   
   </div>
 </template>
