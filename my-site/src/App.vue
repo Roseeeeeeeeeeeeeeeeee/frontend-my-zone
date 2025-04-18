@@ -1,25 +1,32 @@
 <template>
   <div id="app">
-    <Icon type="home"/>
-<h1>dhsjfka</h1>
+    <Pager :total="total" :current="current" @page-change="handleChange" />
+
   </div>
 </template>
 
 <script>
-import Icon from './components/Icon.vue';
+import Pager from './components/Pager.vue';
+
 
 export default {
   name: 'App',
-  components:{
-    Icon,
+  components: {
+    Pager,
+  },
+  data() {
+    return {
+      total: 400,
+      current: 2
+    }
+  },
+  methods: {
+    handleChange(newPage) {
+      
+      this.current = newPage
+    }
   }
 }
 </script>
 
-<style scoped>
-.iconfont{
-  font-size: 400px
-}
-</style>
-
-
+<style scoped></style>
