@@ -24,12 +24,12 @@ export default {
       required: false,
       default: 0
     },
-    limit: {
+    limit: { //页容量
       type: Number,
       required: false,
       default: 10
     },
-    visibleNumber: {
+    visibleNumber: { //可见页码数
       type: Number,
       required: false,
       default: 10
@@ -40,14 +40,14 @@ export default {
       return Math.ceil(this.total / this.limit)
     },
     visibleMin() {
-      let min = this.current - Math.floor(this.limit / 2);
+      let min = this.current - Math.floor(this.visibleNumber / 2);
       if (min < 1) {
         min = 1;
       }
       return min;
     },
     visibleMax() {
-      let max = this.visibleMin + this.limit - 1;
+      let max = this.visibleMin + this.visibleNumber - 1;
       if (max > this.pageNums) {
         max = this.pageNums
       }
@@ -75,6 +75,7 @@ export default {
       {
         return;
       }
+      //抛出组件事件
       this.$emit('page-change',newPage)
     }
   }
