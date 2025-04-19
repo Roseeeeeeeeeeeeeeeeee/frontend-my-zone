@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="test-container">
     <Pager 
         :total="total"
         :current="current"
