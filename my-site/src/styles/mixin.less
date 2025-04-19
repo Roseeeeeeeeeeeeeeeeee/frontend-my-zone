@@ -1,0 +1,13 @@
+//提供各种混合样式（使用率高，相似率高的样式）
+
+/** 
+实现自居中（就是不需要外层元素控制，不知道外层元素使用情况，应用了这个样式就能实现自身的居中）
+前提：外层元素的position不为static(最好为relative)
+*/
+.self-center(@pos :absolute){ //@pos作为参数，默认值为absolute
+    position: @pos;
+    
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
