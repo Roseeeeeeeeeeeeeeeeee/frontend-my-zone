@@ -1,5 +1,5 @@
 <template>
-  <div class="pager-container">
+  <div class="pager-container" v-if="pageNums > 1">
     <a :class="{ disabled: current === 1 }" @click=handleClick(1)>|&lt;&lt;</a>
     <a :class="{ disabled: current === 1 }" @click=handleClick(current-1)>&lt;&lt;</a>
     <!-- 索引部分· -->
