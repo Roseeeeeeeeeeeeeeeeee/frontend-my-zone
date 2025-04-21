@@ -63,7 +63,7 @@ export default {
 
 <style lang="less" scoped>
 @import '~@/styles/var.less';
-@import '~@/styles/global.less';
+
 .contact-container{
     width: 100%;
     background-color: transparent;
