@@ -17,8 +17,8 @@ import "@/styles/global.less";
   
   <style scoped lang="less">
  .test-container{
-    width: 100px;
-    height: 400px;
+    width: 300px;
+    // height: 100%;
     margin: 0 auto;
     
  }
