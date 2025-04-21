@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import Icon from '../Icon'
+import Icon from '@/components/Icon'
 
 export default {
     data() {
@@ -66,6 +66,7 @@ export default {
 
 .contact-container{
     width: 100%;
+  
     background-color: transparent;
     color: @gray;
     list-style: none;

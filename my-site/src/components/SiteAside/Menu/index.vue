@@ -1,6 +1,6 @@
 <template>
     <nav class="menu-container">
-        <a :href="item.link" v-for="item in items" :key="item.link" :class="{
+       <a :href="item.link" v-for="item in items" :key="item.link" :class="{
             seleted: isSeleted(item)
         }">
             <div class="icon">
@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import Icon from '../Icon'
+import Icon from '@/components/Icon'
 export default {
     data() {
         return {
