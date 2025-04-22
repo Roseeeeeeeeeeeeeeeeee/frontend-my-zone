@@ -1,9 +1,9 @@
 <template>
     <nav class="menu-container">
        <router-link 
-       :to="item.link" 
+       :to="{name : item.name}" 
        v-for="item in items" 
-       :key="item.link" 
+       :key="item.name" 
        active-class="selected" 
        exact-active-class=""
        :exact="item.exact"
@@ -28,31 +28,31 @@ export default {
                 {
                     icon: 'home',
                     title: '首页',
-                    link: '/',
+                    name: 'Home',
                     exact: true
                 },
                 {
                     icon: 'blog',
                     title: '文章',
-                    link: '/blog',
+                    name: 'Blog',
                     exact: false // 是否启用路由的精确匹配
                 },
                 {
                     icon: 'about',
                     title: '关于我',
-                    link: '/about',
+                    name: 'About',
                     exact: true
                 },
                 {
                     icon: 'code',
                     title: '项目&效果',
-                    link: '/project',
+                    name: 'Project',
                     exact: true
                 },
                 {
                     icon: 'chat',
                     title: '留言板',
-                    link: '/messgae',
+                    name: 'Message',
                     exact: true
                 },
             ]
