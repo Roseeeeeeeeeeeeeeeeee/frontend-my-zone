@@ -1,8 +1,13 @@
 <template>
     <nav class="menu-container">
-       <router-link :to="item.link" v-for="item in items" :key="item.link" :class="{
-            seleted: isSeleted(item)
-        }">
+       <router-link 
+       :to="item.link" 
+       v-for="item in items" 
+       :key="item.link" 
+       active-class="selected" 
+       exact-active-class=""
+       :exact="item.exact"
+       >
             <div class="icon">
                 <Icon :type="item.icon" />
             </div>
@@ -14,7 +19,7 @@
 
 <script>
 import Icon from '@/components/Icon'
-import router from '../../../router';
+
 export default {
     data() {
         return {
@@ -24,27 +29,31 @@ export default {
                     icon: 'home',
                     title: '首页',
                     link: '/',
+                    exact: true
                 },
                 {
                     icon: 'blog',
                     title: '文章',
                     link: '/blog',
-                    startWith: true // 以link开头的路径均可
+                    exact: false // 是否启用路由的精确匹配
                 },
                 {
                     icon: 'about',
                     title: '关于我',
                     link: '/about',
+                    exact: true
                 },
                 {
                     icon: 'code',
                     title: '项目&效果',
                     link: '/project',
+                    exact: true
                 },
                 {
                     icon: 'chat',
                     title: '留言板',
                     link: '/messgae',
+                    exact: true
                 },
             ]
         }
@@ -52,17 +61,7 @@ export default {
     components: {
         Icon
     },
-    methods: {
-        isSeleted(item) {
-            let curPathname = location.pathname.toLowerCase();
-            let link = item.link.toLowerCase()
-            if (item.startWith) {
-                return curPathname.startsWith(link);
-            } else {
-                return curPathname === link;
-            }
-        }
-    }
+   
 
 
 }
@@ -81,11 +80,8 @@ export default {
         align-items: center;
         height: 30px;
         padding: 0 50px;
-       
         height: 45px;
-        
-
-        &.seleted {
+        &.selected {
             background-color: darken(@words, 5%);
         }
         &:hover{
