@@ -1,19 +1,20 @@
 <template>
     <nav class="menu-container">
-       <a :href="item.link" v-for="item in items" :key="item.link" :class="{
+       <router-link :to="item.link" v-for="item in items" :key="item.link" :class="{
             seleted: isSeleted(item)
         }">
             <div class="icon">
                 <Icon :type="item.icon" />
             </div>
             <span>{{ item.title }}</span>
-        </a>
+       </router-link>
 
     </nav>
 </template>
 
 <script>
 import Icon from '@/components/Icon'
+import router from '../../../router';
 export default {
     data() {
         return {
