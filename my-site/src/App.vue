@@ -1,23 +1,39 @@
 <template>
-  <div id="app">
-    
+  <div class="app-container">
+    <Layout>
+      <template #left>
+        <div class="aside">
+        <SiteAside/>
+
+        </div> 
+      </template>
+      <template #default>
+        中间主区域
+      </template>
+      </Layout>
   </div>
 </template>
 
 <script>
-import Icon from './components/Icon'
-
+import Layout from '@/components/Layout'
+import SiteAside from '@/components/SiteAside'
 
 
 export default {
   name: 'App',
   components: {
-   Icon,
+   Layout,SiteAside
   },
  
 }
 </script>
 
-<style scoped>
-
+<style scoped lang="less">
+@import '~@/styles/mixin.less';
+.app-container{
+    .self-fill(fixed)
+}
+.aside{
+  width: 250px;
+}
 </style>
