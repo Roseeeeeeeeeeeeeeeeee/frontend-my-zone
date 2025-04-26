@@ -3,20 +3,20 @@
         <ul class="carousel-container" :style="{
             marginTop,
         }" @transitionend="handleTransitionEnd">
-            <li v-for="(item, i) in banners" :key="item.id">
+            <li v-for="(item, i) in data" :key="item.id">
                 <Carousel :carousel="item" />
             </li>
         </ul>
         <div class="arrow arrow-up" @click="moveTo(index - 1)" v-show="index > 0">
             <Icon type="arrowUp" />
         </div>
-        <div class="arrow arrow-down" @click="moveTo(index + 1)" v-show="index < banners.length - 1">
+        <div class="arrow arrow-down" @click="moveTo(index + 1)" v-show="index < data.length - 1">
             <Icon type="arrowDown" />
 
         </div>
         <div class="indicater">
             <ul>
-                <li v-for="(item, i) in banners" :key="item.id" :class="{
+                <li v-for="(item, i) in data" :key="item.id" :class="{
                     active: i === index
                 }" @click="moveTo(i)">
                 </li>
@@ -29,14 +29,16 @@
 import getBanners from '../../api/banner';
 import Carousel from './Carouselitem.vue';
 import Icon from '@/components/Icon'
+import fetchData from '../../mixins/fetchData';
 export default {
+    mixins:[fetchData([])],
     data() {
         return {
-            banners: [],
+            // banners: [],
             index: 0,
             containerHeigh: 0,
             switching: false,
-            isLoading: true
+            // isLoading: true
 
         }
     },
@@ -45,15 +47,15 @@ export default {
         Icon
     },
 
-    async created() {
+    // async created() {
 
 
-        const data = await getBanners()
-        this.banners = data;
-        this.isLoading = false
+    //     const data = await gets()
+    //     this.banners = data;
+    //     this.isLoading = false
 
 
-    },
+    // },
     mounted() {
         this.containerHeigh = this.$refs.container.clientHeight;
         window.addEventListener('resize', this.handelResize)
@@ -75,7 +77,7 @@ export default {
 
                 return;
             }
-            if (e.deltaY > 5 && this.index < this.banners.length - 1) {
+            if (e.deltaY > 5 && this.index < this.data.length - 1) {
 
 
                 this.switching = true
@@ -106,6 +108,9 @@ export default {
         },
         handelResize() {
             this.containerHeigh = this.$refs.container.clientHeight;
+        },
+        async fetchData(){
+            return await getBanners()
         }
     },
     computed: {
