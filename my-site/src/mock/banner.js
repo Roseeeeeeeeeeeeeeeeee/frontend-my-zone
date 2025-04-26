@@ -1,6 +1,6 @@
 import Mock from 'mockjs';
 
-import carouselLow1 from '../assets/carousel/low-1.jpeg'
+
 export default Mock.mock("/api/banner", "get", {
     code: 0,
     msg: "",
