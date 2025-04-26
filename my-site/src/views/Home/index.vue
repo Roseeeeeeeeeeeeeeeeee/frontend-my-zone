@@ -1,10 +1,8 @@
 <template>
-    <div class="home-container" ref="container" @wheel="handleWheel">
+    <div class="home-container" ref="container" @wheel="handleWheel" v-loading="isLoading">
         <ul class="carousel-container" :style="{
             marginTop,
-        }" 
-        @transitionend="handleTransitionEnd"
-        >
+        }" @transitionend="handleTransitionEnd">
             <li v-for="(item, i) in banners" :key="item.id">
                 <Carousel :carousel="item" />
             </li>
@@ -38,6 +36,7 @@ export default {
             index: 0,
             containerHeigh: 0,
             switching: false,
+            isLoading: true
 
         }
     },
@@ -47,8 +46,12 @@ export default {
     },
 
     async created() {
+
+
         const data = await getBanners()
         this.banners = data;
+        this.isLoading = false
+
 
     },
     mounted() {
@@ -62,32 +65,44 @@ export default {
         moveTo(i) {
             this.index = i;
             this.switching = true
-           
-            
+
+
         },
         handleWheel(e) {
-           
-            
+
+
             if (this.switching) {
+
                 return;
             }
             if (e.deltaY > 5 && this.index < this.banners.length - 1) {
+
+
                 this.switching = true
-                
-                
+                const timer = setTimeout(() => {
+
+                    this.switching = false
+
+                    clearTimeout(timer)
+                }, 1000)
+
                 this.index++;
             }
 
             if (e.deltaY < -5 && this.index > 0) {
                 this.switching = true
+                const timer = setTimeout(() => {
+
+                    this.switching = false
+
+                    clearTimeout(timer)
+                }, 1000)
                 this.index--;
             }
 
         },
         handleTransitionEnd() {
-            this.switching = false
-            console.log('trend');
-            
+
         },
         handelResize() {
             this.containerHeigh = this.$refs.container.clientHeight;
@@ -95,11 +110,11 @@ export default {
     },
     computed: {
         marginTop() {
-            
+
             return -this.index * this.containerHeigh + 'px';
         }
     },
-    
+
 }
 </script>
 
