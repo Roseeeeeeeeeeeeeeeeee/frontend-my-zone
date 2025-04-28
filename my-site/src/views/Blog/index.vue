@@ -1,20 +1,33 @@
 <template>
-    <div class="blog-container">
-      文章
-    </div>
-   </template>
+  
+    <Layout>
+      
+        <BlogList />
     
-    <script>
-    
-   
-    export default {
-       
-       
-    }
-    </script>
-    
-    <style scoped>
-   
-    </style>
-    
-    
+
+      <template #right>
+          <BlogCategory />
+      </template>
+    </Layout>
+ 
+</template>
+
+<script>
+import Layout from '@/components/Layout'
+import BlogList from './components/BlogList.vue';
+import BlogCategory from './components/BlogCategory.vue';
+
+export default {
+  components: {
+    Layout,
+    BlogList,
+    BlogCategory
+  }
+
+}
+</script>
+
+<style scoped lang="less">
+
+
+</style>

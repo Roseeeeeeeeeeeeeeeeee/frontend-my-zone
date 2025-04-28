@@ -4,6 +4,9 @@
             <span :class="{ active: item.isActive }">
                 {{ item.name }}
             </span>
+            <span class="aside" :class="{ active: item.isActive }">
+                {{ item.articleCount }}篇
+            </span>
             <RightList :list="item.children" @select="handleClick" />
         </li>
     </ul>
@@ -29,6 +32,9 @@ export default {
     },
     methods: {
         handleClick(item) {
+            if (item.isActive) {
+                return;
+            }
             this.$emit('select', item)
         }
     }
@@ -46,16 +52,26 @@ export default {
     .right-list-container {
         margin-left: 1em;
     }
-    li{
+
+    li {
         min-height: 40px;
         line-height: 40px;
+        font-size: 13px;
+
         cursor: pointer;
-        .active {
-        font-weight: bold;
-        color: @warn;
+
+        span.active {
+            font-weight: bold;
+            color: @warn;
+
+        }
+        .aside{
+            color: @gray;
+            font-size: 12px;
+        }
+
     }
-    }
-    
+
 
 }
 </style>

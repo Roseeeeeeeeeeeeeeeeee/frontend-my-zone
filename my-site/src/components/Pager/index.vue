@@ -85,7 +85,7 @@ export default {
 
 
 <style lang="less" scoped>
-@import '~@/styles/style.less';
+@import url('~@/styles/var.less');
 
 .pager-container {
   display: flex;

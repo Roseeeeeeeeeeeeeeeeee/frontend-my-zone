@@ -18,13 +18,5 @@ new Vue({
 }).$mount('#app')
 
 
-//测试接口
-import * as blogApi from '@/api/blog.js';
-blogApi.getBlogTypes().then((r)=>{
-  console.log('博客分类',r);
-  
-});
-blogApi.getBlogs(10,20,-1).then((r)=>{
-  console.log('博客',r);
-  
-});
+//测试区
+
