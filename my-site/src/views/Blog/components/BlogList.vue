@@ -2,23 +2,48 @@
     <div class="blog-list-container" v-loading="isLoading" ref="container">
         <ul>
             <li v-for="(item, i) in data.rows" :key="item.id">
+
                 <div class="thumb" v-if="item.thumb">
-                    <a href="">
+                    <router-link :to="{
+                        name: 'BlogDetail',
+                        params: {
+                            id: item.id
+                        }
+                    }">
                         <img :src="item.thumb" :alt="item.title" :title="item.title">
-                    </a>
+                    </router-link>
                 </div>
+
+
                 <div class="main">
-                    <a href="">
+
+                    <router-link :to="{
+                        name: 'BlogDetail',
+                        params: {
+                            id: item.id
+                        }
+                    }">
                         <h2>
                             {{ item.title }}
                         </h2>
+                    </router-link>
 
-                    </a>
+
+
                     <div class="desc">
                         <span>日期 ：{{ getFormatDate(item.createDate) }}</span>
                         <span>浏览 ：{{ item.scanNumber }}</span>
                         <span>评论 ：{{ item.commentNumber }}</span>
-                        <a href="/article/cate/8">{{ item.category.name }}</a>
+                        <router-link :to="{
+                            name: 'BlogCategory',
+                            
+                            params: {
+                                categoryId: item.category.id
+                            }
+                        }">
+                            <a>{{ item.category.name }}</a>
+                        </router-link>
+
                     </div>
                     <div class="content">
 
@@ -55,7 +80,7 @@ export default {
     methods: {
         async fetchData() {
             const r = await getBlogs(this.routeInfo.page, this.routeInfo.limit, this.routeInfo.categoryId)
-            // console.log(r);
+            console.log(r);
             return r
 
         },
