@@ -5,7 +5,7 @@
                 {{ item.name }}
             </span>
             <span class="aside" :class="{ active: item.isActive }">
-                {{ item.articleCount }}篇
+                {{ item.aside }}
             </span>
             <RightList :list="item.children" @select="handleClick" />
         </li>

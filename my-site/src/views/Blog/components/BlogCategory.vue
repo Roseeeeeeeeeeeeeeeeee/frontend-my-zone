@@ -71,7 +71,8 @@ export default {
       return result.map((it) => {
         return {
           ...it,
-          isActive: it.id === this.categoryId
+          isActive: it.id === this.categoryId,
+          aside:it.articleCount+'篇'
         }
       })
     }
