@@ -43,6 +43,7 @@
     position: relative;
     overflow-y: auto;
     height: 100%;
+    scroll-behavior: smooth;
   
     h2 {
       font-weight: bold;
