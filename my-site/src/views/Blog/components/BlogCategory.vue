@@ -16,7 +16,7 @@ export default {
   methods: {
     async fetchData() {
       const r = await getBlogTypes();
-      console.log(r);
+      // console.log(r);
 
       return r
 

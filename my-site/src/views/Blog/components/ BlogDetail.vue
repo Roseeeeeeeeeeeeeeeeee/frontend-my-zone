@@ -5,7 +5,7 @@
       <aside>
         <span>日期：{{getFormatDate(data.createDate)}}</span>
         <span>浏览：{{data.scanNumber}}</span>
-        <a href="">评论：{{data.commentNumber}}</a>
+        <a href="#data-form-container">评论：{{data.commentNumber}}</a>
         <a href="">{{data.category.name}}</a>
       </aside>
       <div class="markdown-body" v-html="data.htmlContent">
@@ -42,8 +42,8 @@
     padding: 20px;
     position: relative;
     overflow-y: auto;
-    height: 100%;
-    scroll-behavior: smooth;
+    // height: 100%;
+    // scroll-behavior: smooth;
   
     h2 {
       font-weight: bold;

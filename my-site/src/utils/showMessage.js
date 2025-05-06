@@ -1,4 +1,4 @@
-
+//用法；就是调用这个函数即可
 import getComponentRootDom from "./getComponentRootDom";
 import Icon from '@/components/Icon'
 import styles from './showMessage.module.less'

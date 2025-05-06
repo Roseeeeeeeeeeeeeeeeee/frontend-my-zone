@@ -80,7 +80,7 @@ export default {
     methods: {
         async fetchData() {
             const r = await getBlogs(this.routeInfo.page, this.routeInfo.limit, this.routeInfo.categoryId)
-            console.log(r);
+            // console.log(r); 
             return r
 
         },
