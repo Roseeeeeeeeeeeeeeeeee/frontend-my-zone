@@ -5,6 +5,9 @@ import router from './router'
 import { showMessage } from './utils'
 import "./mock"
 import vLoading from '@/directives/loading'
+import './eventBus'
+
+
 Vue.prototype.$showMessage = showMessage;
 
 Vue.config.productionTip = false

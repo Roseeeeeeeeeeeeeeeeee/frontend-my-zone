@@ -31,4 +31,4 @@
 //Vue中已经封装好的事件总线(即已经在Vue中封装好了上述对象的三个方法)
 
 import Vue from "vue";
-export default new Vue({})
+Vue.prototype.$bus = new Vue({})
