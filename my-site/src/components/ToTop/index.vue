@@ -13,7 +13,7 @@ export default {
         },
         handleScroll(dom) {
            
-            console.log('ds');
+            
             
             if (!dom) { 
                 this.show  = false

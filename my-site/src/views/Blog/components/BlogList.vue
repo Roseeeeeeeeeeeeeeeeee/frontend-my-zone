@@ -1,5 +1,5 @@
 <template>
-    <div class="blog-list-container" v-loading="isLoading" ref="container">
+    <div class="blog-list-container"  v-loading="isLoading" ref="container">
         <ul>
             <li v-for="(item, i) in data.rows" :key="item.id">
 
@@ -64,6 +64,7 @@
 
 <script>
 import fetchData from '@/mixins/fetchData.js'
+import mainScroll from '@/mixins/mainScroll';
 import { getBlogs } from '../../../api/blog';
 import { getFormatDate } from '@/utils'
 import Pager from '@/components/Pager'
@@ -71,7 +72,7 @@ export default {
     components: {
         Pager,
     },
-    mixins: [fetchData({})],
+    mixins: [fetchData({}),mainScroll('container')],
     data() {
         return {
 
@@ -109,7 +110,9 @@ export default {
                 })
             }
 
-        }
+        },
+       
+    
     },
     computed: {
         //获取路由信息
@@ -125,6 +128,8 @@ export default {
         }
 
     },
+  
+  
     watch: {
 
         // async $route() { //就是监视this.$route

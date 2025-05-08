@@ -19,10 +19,11 @@ import Layout from '@/components/Layout'
 import BlogTOC from './components/BlogTOC.vue';
 import BlogDetail from './components/ BlogDetail.vue';
 import fetchData from '@/mixins/fetchData'
+import mainScroll from '@/mixins/mainScroll';
 import { getBlog } from '@/api/blog';
 import BlogComment from './components/BlogComment.vue';
 export default {
-    mixins: [fetchData(null)],
+    mixins: [fetchData(null),mainScroll('mainContainer')],
     components: {
         Layout,
         BlogTOC,
@@ -36,12 +37,7 @@ export default {
             // console.log(r);
             return r
         },
-        handleScroll() {
-            this.$bus.$emit('mainScroll', this.$refs.mainContainer)
-        },
-        setScroll(top) {
-            this.$refs.mainContainer.scrollTop = top
-        }
+       
     },
     updated() {
         const hash = location.hash
@@ -50,17 +46,7 @@ export default {
             location.hash = hash
         }, 50);
     },
-    mounted() {
-        this.$refs.mainContainer.addEventListener("scroll", this.handleScroll);
-    },
-    created() {
-        this.$bus.$on('setMainScroll', this.setScroll)
-    },
-    beforeDestroy() {
-        this.$bus.$emit("mainScroll");
-        this.$bus.$off("setMainScroll", this.setScroll);
-        this.$refs.mainContainer.removeEventListener("scroll", this.handleScroll);
-    },
+   
 }
 </script>
 
