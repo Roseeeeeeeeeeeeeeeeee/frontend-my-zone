@@ -1,9 +1,9 @@
 <template>
 
     <Layout>
-        <div ref="mainContainer"  class="main-container" v-loading="isLoading">
+        <div ref="mainContainer" class="main-container" v-loading="isLoading">
             <BlogDetail :data="data" v-if="data" />
-            <BlogComment v-if="!isLoading"/>
+            <BlogComment v-if="!isLoading" />
         </div>
         <template #right>
             <div class="right-container" v-loading="isLoading">
@@ -36,11 +36,14 @@ export default {
             // console.log(r);
             return r
         },
-        handleScroll(){
-           this.$bus.$emit('mainScroll',this.$refs.mainContainer) 
+        handleScroll() {
+            this.$bus.$emit('mainScroll', this.$refs.mainContainer)
+        },
+        setScroll(top) {
+            this.$refs.mainContainer.scrollTop = top
         }
     },
-    updated(){
+    updated() {
         const hash = location.hash
         location.hash = '';
         setTimeout(() => {
@@ -48,11 +51,16 @@ export default {
         }, 50);
     },
     mounted() {
-    this.$refs.mainContainer.addEventListener("scroll", this.handleScroll);
-  },
-  destroyed() {
-    this.$refs.mainContainer.removeEventListener("scroll", this.handleScroll);
-  },
+        this.$refs.mainContainer.addEventListener("scroll", this.handleScroll);
+    },
+    created() {
+        this.$bus.$on('setMainScroll', this.setScroll)
+    },
+    beforeDestroy() {
+        this.$bus.$emit("mainScroll");
+        this.$bus.$off("setMainScroll", this.setScroll);
+        this.$refs.mainContainer.removeEventListener("scroll", this.handleScroll);
+    },
 }
 </script>
 

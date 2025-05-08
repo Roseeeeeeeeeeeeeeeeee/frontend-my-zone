@@ -7,7 +7,7 @@
         </h3>
 
         <DataList :list="list" />
-        <div class="loading" v-loading="isListLoading"></div>
+        <div class="loading" v-loading="isListLoading" v-show="isListLoading"></div>
     </div>
 </template>
 
