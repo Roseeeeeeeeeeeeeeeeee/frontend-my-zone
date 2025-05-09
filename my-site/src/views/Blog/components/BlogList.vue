@@ -1,6 +1,6 @@
 <template>
-    <div class="blog-list-container"  v-loading="isLoading" ref="container">
-        <ul>
+    <div class="blog-list-container"  v-loading="isLoading" ref="container" >
+        <ul v-show="!isLoading">
             <li v-for="(item, i) in data.rows" :key="item.id">
 
                 <div class="thumb" v-if="item.thumb">
@@ -10,7 +10,7 @@
                             id: item.id
                         }
                     }">
-                        <img :src="item.thumb" :alt="item.title" :title="item.title">
+                        <img  v-lazy="item.thumb" :alt="item.title" :title="item.title">
                     </router-link>
                 </div>
 
@@ -58,7 +58,7 @@
         </ul>
         <!-- 分页组件 -->
         <Pager class="pager" v-if="data.total" :total="data.total" :current="routeInfo.page" :limit="routeInfo.limit"
-            @page-change="handleChange" />
+            @page-change="handleChange" v-show="!isLoading"/>
     </div>
 </template>
 
