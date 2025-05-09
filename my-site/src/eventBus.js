@@ -40,4 +40,7 @@ import Vue from "vue";
  * 含义：当需要设置主区域的滚动条位置时触发
  * 参数：滚动高度
  */
-Vue.prototype.$bus = new Vue({})
+const app = new Vue({})
+Vue.prototype.$bus = app;
+
+export default app
