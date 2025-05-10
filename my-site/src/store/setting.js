@@ -1,4 +1,5 @@
 import getSetting from "@/api/setting"
+import { titleController } from "@/utils";
 export default {
     namespaced:true,
     state:{
@@ -23,6 +24,9 @@ export default {
                 link.type = 'images/x-icon'
                 link.herf= resp.favicon;
                 document.querySelector('head').appendChild(link)
+            }
+            if(resp.siteTitle){
+                titleController.setSiteTitle(resp.siteTitle)
             }
         }
     }

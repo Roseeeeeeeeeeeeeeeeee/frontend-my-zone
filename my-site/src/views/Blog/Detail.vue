@@ -22,6 +22,7 @@ import fetchData from '@/mixins/fetchData'
 import mainScroll from '@/mixins/mainScroll';
 import { getBlog } from '@/api/blog';
 import BlogComment from './components/BlogComment.vue';
+import { titleController } from '@/utils';
 export default {
     mixins: [fetchData(null),mainScroll('mainContainer')],
     components: {
@@ -35,6 +36,9 @@ export default {
         async fetchData() {
             const r = await getBlog(this.$route.params.id);
             // console.log(r);
+            if(r.title){
+                titleController.setRouteTitle(r.title)
+            }
             return r
         },
        
