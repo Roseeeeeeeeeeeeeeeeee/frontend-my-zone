@@ -4,9 +4,9 @@ import '@/styles/global.less'
 import router from './router'
 import { showMessage } from './utils'
 import "./mock"
-
 import './eventBus'
-
+import store from '@/store'
+store.dispatch("setting/fetchData")
 
 Vue.prototype.$showMessage = showMessage;
 
@@ -19,6 +19,7 @@ Vue.directive('lazy',vLazy)
 
 new Vue({
   router,
+  store,
   render: h => h(App),
 }).$mount('#app')
 

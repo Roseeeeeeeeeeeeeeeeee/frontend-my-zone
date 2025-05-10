@@ -1,13 +1,14 @@
 <template>
     <div class="site-aside-container">
+        <template v-if="data">
+            <div class="avatar">
+                <Avatar :url="data.avatar" />
+            </div>
+            <h1 class="title">{{ data.siteTitle }}</h1>
+        </template>
 
-        <div class="avatar">
-            <Avatar
-                url="https://img1.baidu.com/it/u=1592846363,3525204503&fm=253&fmt=auto&app=120&f=JPEG?w=500&h=667" />
-        </div>
-        <h1 class="title">张婧仪的小窝</h1>
-        <Menu />
-        <Contact />
+        <Menu v-if="data"/>
+        <Contact v-if="data"/>
     </div>
 </template>
 
@@ -15,11 +16,13 @@
 import Avatar from '@/components/Avatar';
 import Menu from './Menu';
 import Contact from './Contact';
+import { mapState } from 'vuex';
 export default {
 
     components: {
         Avatar, Menu, Contact
     },
+    computed: mapState('setting', ['data'])
 
 
 
@@ -34,19 +37,21 @@ export default {
     height: 100%;
     background-color: @dark;
 
-    overflow-y:scroll;
+    overflow-y: scroll;
     overflow-x: hidden;
     padding: 20px 0;
-    .title{
+
+    .title {
         text-align: center;
         margin-top: 10px;
         color: rgb(170, 236, 185);
         font-size: 25px;
     }
+
     .avatar {
         display: flex;
         justify-content: center;
-      
+
     }
 }
 </style>
