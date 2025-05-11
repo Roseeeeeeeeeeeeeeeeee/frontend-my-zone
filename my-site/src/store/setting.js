@@ -12,6 +12,7 @@ export default {
     },
     actions:{
         async fetchData(ctx){
+            
             const resp = await getSetting();
             ctx.commit('setData',resp)
             if(resp.favicon){

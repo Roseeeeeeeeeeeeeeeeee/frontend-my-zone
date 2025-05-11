@@ -11,8 +11,6 @@ export default function (refName) {
         },
         methods: {
             handleMainScroll() {
-     
-                
                 this.$bus.$emit("mainScroll", this.$refs[refName]);
             },
             handleSetMainScroll(scrollTop) {
