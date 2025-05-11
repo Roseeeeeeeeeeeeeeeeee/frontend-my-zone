@@ -1,3 +1,10 @@
+
+/**
+ * 
+ * @param {*} refName  ref元素的名称，如<div ref="container">gasdgasd</div>中的container
+ * @returns 
+ * 用于在每个有滚动条之处引入回到顶部功能
+ */
 export default function (refName) {
     return {
         mounted() {

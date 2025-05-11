@@ -12,10 +12,11 @@
 import fetchData from '@/mixins/fetchData'
 import { getComments, postComment } from '@/api/blog'
 import MessageArea from '@/components/MessageArea'
+import loadingMore from '@/mixins/loadingMore'
 export default {
     mixins: [fetchData({
         total: 0, rows: []
-    })],
+    }),loadingMore],
     data() {
         return {
             page: 1,
@@ -23,50 +24,16 @@ export default {
             
         }
     },
-    computed:{
-        isCommentEnd(){
-            return this.data.total <= this.data.rows.length
-        }
-    },
-    created() {
-        // window.fetchMoreComment = this.fetchMoreComment
-        this.$bus.$on('mainScroll', this.handleScroll)
-    },
-    destroyed(){
-        this.$bus.$off('mainScroll', this.handleScroll)
-       
-    },
+   
+   
     methods: {
         async fetchData() {
             const r = await getComments(this.page, this.limit, this.$route.params.id)
             // console.log(r);
             return r
         },
-        async fetchMoreComment() {
-            if(this.isCommentEnd){
-                return
-            }
-            this.page++;
-            this.isLoading = true
-            const resp = await this.fetchData()
-            this.isLoading = false
-            this.data.rows = this.data.rows.concat(resp.rows);
-
-        },
-        handleScroll(dom) {
-            if (this.isLoading || !dom) {
-                return
-            }
-           
-            
-            const gap = 10 // 表明滚动到离底部在100px内就可以更新评论了
-            const curGap = Math.abs(dom.scrollHeight - (dom.scrollTop + dom.clientHeight))
-            if (curGap <= gap ) {
-                this.fetchMoreComment()
-            }
-
-
-        },
+        
+         
         async handleSubmit(formData, callback) {
             const res = await postComment({
                 blogId: this.$route.params.id,

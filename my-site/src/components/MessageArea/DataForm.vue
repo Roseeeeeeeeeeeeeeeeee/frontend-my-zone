@@ -67,12 +67,14 @@ export default {
             //提交过程
             this.isSubmiting = true
             this.$emit('submit', this.formData, (text) => {
+                 this.isSubmiting = false;
                 this.$showMessage({
                     text: text,
                     type: 'success',
                     container: this.$refs.form,
+                   
                     callback:()=>{
-                        this.isSubmiting = false;
+                       
                         this.formData.nickname = '';
                         this.formData.comment = '';
                     }
