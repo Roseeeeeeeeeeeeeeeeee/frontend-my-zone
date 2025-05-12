@@ -8,5 +8,6 @@ module.exports = {
                 target: 'https://i1.hdslb.com', // 设置图片的主机
             }
         }
-    }
+    },
+    configureWebpack:require('./webpack.config')
 }
