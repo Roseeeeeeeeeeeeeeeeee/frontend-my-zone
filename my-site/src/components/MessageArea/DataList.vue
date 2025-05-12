@@ -13,21 +13,28 @@
             </div>
 
         </li>
+        <Empty text="无留言或评论" v-if="list.length === 0 && !isLoading"/>
     </ul>
 </template>
 
 <script>
 import Avatar from '@/components/Avatar';
 import { getFormatDate } from '../../utils';
+import Empty from "@/components/Empty"
 export default {
     components: {
         Avatar,
+       Empty
 
     },
     props: {
         list: {
             type: Array,
             default:()=>[]
+        },
+        isLoading:{
+          type:Boolean,
+          default:false
         }
     },
     methods: {
@@ -40,9 +47,11 @@ export default {
 @import url('~@/styles/var.less');
 
 .data-list-container {
+  position: relative;
   list-style: none;
   margin: 0;
   padding: 0;
+  min-height: 150px;
 }
 li {
   display: flex;

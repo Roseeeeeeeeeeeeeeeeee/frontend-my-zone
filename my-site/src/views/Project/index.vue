@@ -22,25 +22,24 @@
         </p>
       </div>
     </div>
+    <Empty v-if="data.length === 0 && !loading" text="暂无项目"/>
   </div>
 </template>
 
 <script>
 import Icon from '@/components/Icon'
-
+import Empty from '@/components/Empty'
 import { mapState } from 'vuex';
 import mainScroll from '@/mixins/mainScroll';
 export default {
   mixins:[mainScroll('container')],
   components: {
     Icon,
+    Empty
 
   },
   created() {
     this.$store.dispatch('project/fetchData')
-   
-    
-    
   },
   computed: mapState('project', ['data', 'loading'])
 }

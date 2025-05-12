@@ -2,7 +2,7 @@ import Mock from 'mockjs'
 Mock.mock('/api/project','get',{
     code:0,
     msg:'',
-    "data|8": [
+    "data|5-8": [
         {
           id: "@uuid",
           name: "@ctitle(1, 10)",

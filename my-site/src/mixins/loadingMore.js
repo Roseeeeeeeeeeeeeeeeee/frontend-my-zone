@@ -18,7 +18,7 @@ export default{
     },
     methods:{
         async fetchMoreComment() {
-            if(this.isCommentEnd){
+            if(this.isCommentEnd || this.data.rows.length === 0){
                 return
             }
             this.page++;

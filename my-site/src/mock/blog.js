@@ -14,6 +14,7 @@ Mock.mock('/api/blogtype', 'get', {
         },
     ]
 })
+
 //模拟博客某页信息
 Mock.mock(/^\/api\/blog(\?.+)?$/, 'get', function (option) {
     const querys = qs.parse(option.url)
@@ -21,22 +22,22 @@ Mock.mock(/^\/api\/blog(\?.+)?$/, 'get', function (option) {
         code: 0,
         msg: "",
         data: {
-            'total|1000-2500': 0,
-            [`rows|${querys.limit}`]: [
-                {
-                    id: '@guid',
-                    title: "@ctitle",
-                    description: "@cparagraph(1,10)",
-                    category: {
-                        'id|+1': 1,
-                        name: "分类@id"
-                    },
-                    'scanNumber|0-500': 0,
-                    'commentNumber|0-200': 0,
-                    'thumb|1': '@image(300x250, @color, #fff, @ctitle)',
-                    createDate: "@date(T)"
-                }
-            ]
+          'total|1000-2500': 0,
+          [`rows|${querys.limit}`]: [
+              {
+                  id: '@guid',
+                  title: "@ctitle",
+                  description: "@cparagraph(1,10)",
+                  category: {
+                      'id|+1': 1,
+                      name: "分类@id"
+                  },
+                  'scanNumber|0-500': 0,
+                  'commentNumber|0-200': 0,
+                  'thumb|1': '@image(300x250, @color, #fff, @ctitle)',
+                  createDate: "@date(T)"
+              }
+          ]
         }
     }
     )

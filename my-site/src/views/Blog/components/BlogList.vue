@@ -59,6 +59,7 @@
         <!-- 分页组件 -->
         <Pager class="pager" v-if="data.total" :total="data.total" :current="routeInfo.page" :limit="routeInfo.limit"
             @page-change="handleChange" v-show="!isLoading"/>
+        <Empty v-if="data.rows.length === 0 && !isLoading"/>
     </div>
 </template>
 
@@ -68,11 +69,17 @@ import mainScroll from '@/mixins/mainScroll';
 import { getBlogs } from '../../../api/blog';
 import { getFormatDate } from '@/utils'
 import Pager from '@/components/Pager'
+import Empty from '@/components/Empty'
+
 export default {
     components: {
         Pager,
+        Empty
     },
-    mixins: [fetchData({}),mainScroll('container')],
+    mixins: [fetchData({
+        total:0,
+        rows:[]
+    }),mainScroll('container')],
     data() {
         return {
 
