@@ -34,8 +34,13 @@ export default {
     },
     methods: {
         async fetchData() {
-            const r = await getBlog(this.$route.params.id);
+            let r = await getBlog(this.$route.params.id);
             // console.log(r);
+            if(!r){
+                //文章不存在
+                this.$router.push('/404')
+                return
+            }
             if(r.title){
                 titleController.setRouteTitle(r.title)
             }

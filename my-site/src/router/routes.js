@@ -1,6 +1,8 @@
 import { delay } from '@/utils'
 import "nprogress/nprogress.css";
 import { start, done, configure } from 'nprogress';
+import NotFound from '@/components/NotFound'
+
 configure({
     // trickleSpeed: 20,
     showSpinner: false
@@ -72,4 +74,9 @@ export default [
             title: '留言板'
         }
     },
+    {
+        name: 'NotFound',
+        path: '*',
+        component: NotFound
+    }
 ]
