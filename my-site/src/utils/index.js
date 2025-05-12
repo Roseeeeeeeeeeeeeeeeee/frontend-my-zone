@@ -9,3 +9,5 @@ export { default as getFormatDate } from './getFormatDate'
 export { default as debounce } from './debounce'
 
 export { default as titleController } from './titleController'
+
+export { default as delay } from './delay'
