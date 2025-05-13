@@ -1,7 +1,7 @@
 import { delay } from '@/utils'
 import "nprogress/nprogress.css";
 import { start, done, configure } from 'nprogress';
-import NotFound from '@/components/NotFound'
+import NotFound from '@/views/NotFound'
 
 configure({
     // trickleSpeed: 20,
