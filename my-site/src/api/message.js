@@ -1,5 +1,6 @@
 import request from './request'
 export async function postMessage(mes){
+   
     return await request.post('/api/message',mes)
 }
 

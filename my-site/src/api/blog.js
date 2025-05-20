@@ -20,6 +20,8 @@ export async function getBlog(id){
 }
 //提交评论
 export async function postComment(commentInfo) {
+    console.log(commentInfo,'com');
+    
     return await request.post('/api/comment',
         commentInfo
     )

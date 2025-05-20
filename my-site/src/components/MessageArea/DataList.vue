@@ -11,7 +11,7 @@
                     {{ getFormatDate(item.createDate, true) }}
                 </div>
             </div>
-
+ 
         </li>
         <Empty text="无留言或评论" v-if="list.length === 0 && !isLoading"/>
     </ul>
@@ -39,6 +39,10 @@ export default {
     },
     methods: {
         getFormatDate
+    },
+    mounted(){
+      console.log(this.list,'lis');
+      
     }
 }
 </script>

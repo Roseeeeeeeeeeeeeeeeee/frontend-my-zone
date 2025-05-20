@@ -9,11 +9,11 @@
       <router-link :to="{
         name: 'BlogCategory',
         params: {
-          categoryId: data.category.id
+          categoryId: data.category? data.category.id :''
         }
 
       }">
-        {{ data.category.name }}
+        {{ data.category ? data.category.name: ''}}
       </router-link>
 
     </aside>

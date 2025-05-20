@@ -8,11 +8,11 @@
         
         <DataList :list="list" :isLoading="isListLoading"/>
         
-        <div class="loading" v-loading="isListLoading" v-show="isListLoading"></div>
+        <div class="loading" v-loading="isListLoading" ></div>
         
     </div>
-</template>
-
+</template> 
+ 
 <script>
 
 
@@ -56,9 +56,9 @@ export default {
 
 <style scoped lang="less">
 @import url('~@/styles/var.less');
-.message-area-container{
-    position: relative;
-}
+// .message-area-container{
+//     position: relative;
+// }
 .loading{
     position: relative;
     height: 100px;

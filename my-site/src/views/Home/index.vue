@@ -59,7 +59,9 @@ export default {
     // },
     created() {
         this.$store.dispatch("banner/fetchData");
+        
        
+        
         
     },
     mounted() {

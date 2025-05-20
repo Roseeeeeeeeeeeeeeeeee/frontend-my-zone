@@ -1,5 +1,5 @@
 <template>
-    <div class="blog-list-container"  v-loading="isLoading" ref="container" >
+    <div class="blog-list-container" v-loading="isLoading" ref="container">
         <ul v-show="!isLoading">
             <li v-for="(item, i) in data.rows" :key="item.id">
 
@@ -10,7 +10,7 @@
                             id: item.id
                         }
                     }">
-                        <img  v-lazy="item.thumb" :alt="item.title" :title="item.title">
+                        <img v-lazy="item.thumb" :alt="item.title" :title="item.title">
                     </router-link>
                 </div>
 
@@ -36,12 +36,12 @@
                         <span>评论 ：{{ item.commentNumber }}</span>
                         <router-link :to="{
                             name: 'BlogCategory',
-                            
+
                             params: {
-                                categoryId: item.category.id
+                                categoryId: item.category ? item.category.id : ''
                             }
                         }">
-                            <a>{{ item.category.name }}</a>
+                            <a>{{ item.category ? item.category.name : '' }}</a>
                         </router-link>
 
                     </div>
@@ -58,8 +58,8 @@
         </ul>
         <!-- 分页组件 -->
         <Pager class="pager" v-if="data.total" :total="data.total" :current="routeInfo.page" :limit="routeInfo.limit"
-            @page-change="handleChange" v-show="!isLoading"/>
-        <Empty v-if="data.rows.length === 0 && !isLoading"/>
+            @page-change="handleChange" v-show="!isLoading" />
+        <Empty v-if="data.rows.length === 0 && !isLoading" />
     </div>
 </template>
 
@@ -77,9 +77,9 @@ export default {
         Empty
     },
     mixins: [fetchData({
-        total:0,
-        rows:[]
-    }),mainScroll('container')],
+        total: 0,
+        rows: []
+    }), mainScroll('container')],
     data() {
         return {
 
@@ -94,6 +94,8 @@ export default {
         },
         getFormatDate,
         handleChange(np) {
+            console.log(this.data.rows);
+
             //用新的页码变更url中的page参数
             //1、所有分类情况下
             const query = {
@@ -118,8 +120,8 @@ export default {
             }
 
         },
-       
-    
+
+
     },
     computed: {
         //获取路由信息
@@ -135,8 +137,8 @@ export default {
         }
 
     },
-  
-  
+
+
     watch: {
 
         // async $route() { //就是监视this.$route

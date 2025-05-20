@@ -3,7 +3,7 @@ import App from './App.vue'
 import '@/styles/global.less'
 import router from './router'
 import { showMessage } from './utils'
-import "./mock"
+// import "./mock"
 import './eventBus'
 import store from '@/store'
 store.dispatch("setting/fetchData")

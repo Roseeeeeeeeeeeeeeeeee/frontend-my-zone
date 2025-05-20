@@ -1,8 +1,8 @@
 <template>
   <div class="message-container" v-loading="isLoading" ref="container">
-    <MessageArea title="留言板" :subTitle="`(${data.total})`" :list="data.rows" :isListLoading="isLoading"
+    <MessageArea title="留言板" :subTitle="`(${data.total})`" :list="data.rows" :isListLoading="isListLoading"
       @submit="handleSubmit" />
-    <div class="aside" v-if="isCommentEnd && !isLoading">
+    <div class="aside" v-if="isCommentEnd && !isListLoading && !isLoading">
       - - - - - -没有更多评论了😜- - - - - -
     </div>
   </div>
@@ -15,6 +15,7 @@ import fetchData from '@/mixins/fetchData'
 import * as MsgApi from '@/api/message'
 import mainScroll from '@/mixins/mainScroll'
 import loadingMore from '@/mixins/loadingMore'
+import { SERVER_URL } from '../../urlConfig'
 export default {
   components: {
     MessageArea,
@@ -22,7 +23,8 @@ export default {
   data() {
     return {
       page: 1,
-      limit: 10
+      limit: 10,
+      isListLoading:false
     }
   },
   mixins: [fetchData({
@@ -32,12 +34,16 @@ export default {
   methods: {
     async fetchData() {
       const r = await MsgApi.getMessages(this.page, this.limit);
-      console.log(r);
+      r.rows.forEach(e => {
+                e.avatar =  SERVER_URL + e.avatar 
+            });
       return r
 
     },
     async handleSubmit(msg, callback) {
       const r = await MsgApi.postMessage(msg)
+      r.avatar = SERVER_URL + r.avatar
+      
       this.data.rows.unshift(r)
       this.data.total++;
       callback('感谢你的留言😘')

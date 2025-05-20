@@ -10,6 +10,8 @@ export default function (dataType = null) {
         },
         async created() {
             this.data = await this.fetchData();
+            
+            
             this.isLoading = false
         }
     }

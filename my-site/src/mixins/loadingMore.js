@@ -19,17 +19,20 @@ export default{
     methods:{
         async fetchMoreComment() {
             if(this.isCommentEnd || this.data.rows.length === 0){
+                this.isListLoading= false
                 return
             }
             this.page++;
-            this.isLoading = true
+            this.isListLoading = true
             const resp = await this.fetchData()
-            this.isLoading = false
+
+            
+            this.isListLoading = false
             this.data.rows = this.data.rows.concat(resp.rows);
 
         },
         handleScroll(dom) {
-            if (this.isLoading || !dom) {
+            if (this.isListLoading || !dom) {
                 return
             }
            

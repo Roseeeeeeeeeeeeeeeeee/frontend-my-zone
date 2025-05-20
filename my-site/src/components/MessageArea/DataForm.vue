@@ -14,9 +14,9 @@
         </div>
         <div class="form-item" >
             <div class="text-area">
-            <div class="tip">{{ formData.comment.length }}/300</div>
+            <div class="tip">{{ formData.content.length }}/300</div>
 
-                <textarea name="" id="" placeholder="输入内容" v-model.trim="formData.comment" maxlength="300"></textarea>
+                <textarea name="" id="" placeholder="输入内容" v-model.trim="formData.content" maxlength="300"></textarea>
             </div>
 
             <div class="error">{{ errInfo.content }}</div>
@@ -46,22 +46,24 @@ export default {
         return {
             formData: {
                 nickname: '',
-                comment: ''
+                content: ''
             },
             isSubmiting: false,
             errInfo: {
                 nickname: '',
-                comment: ''
+                content: ''
             }
         }
     },
     methods: {
         handleSubmit() {
+            
+            
             //处理不满足提交要求的情况
             this.errInfo.nickname = this.formData.nickname ? '' : '昵称不能为空'
-            this.errInfo.content = this.formData.comment ? '' : '内容不能为空'
+            this.errInfo.content = this.formData.content ? '' : '内容不能为空'
         
-            if (this.errInfo.nickname || this.errInfo.comment) {
+            if (this.errInfo.nickname || this.errInfo.content) {
                 return;
             }
             //提交过程
@@ -76,7 +78,7 @@ export default {
                     callback:()=>{
                        
                         this.formData.nickname = '';
-                        this.formData.comment = '';
+                        this.formData.content = '';
                     }
 
                 })
